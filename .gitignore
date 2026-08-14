@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.tmp-images
+
+# archivos locales de herramientas/editor
+.cursor/
+agent-transcripts/
+terminals/
+
+# capturas y exportaciones temporales
+assets/
+public/images/logo-ig-*-v*.png
