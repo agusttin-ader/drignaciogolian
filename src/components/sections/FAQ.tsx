@@ -24,11 +24,11 @@ export function FAQSection() {
             Preguntas
           </SectionHeading>
           <p className="mt-4 max-w-md text-[0.92rem] leading-relaxed text-muted-foreground/90 sm:mt-6 sm:text-base">
-            Esta sección usa respuestas editoriales de referencia para mantener equilibrio de lectura e interacción hasta recibir el contenido definitivo validado por el doctor.
+            Las dudas más frecuentes antes de una primera consulta.
           </p>
         </div>
         <Reveal delay={0.06} className="md:pt-2">
-          <Accordion items={siteConfig.faqPlaceholders} />
+          <Accordion items={siteConfig.faqs} />
         </Reveal>
       </div>
     </section>

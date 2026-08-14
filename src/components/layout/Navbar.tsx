@@ -8,11 +8,17 @@ import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
-const navOrder = ["#inicio", "#consultorio", "#historial", "#contacto"] as const;
+const navOrder = [
+  "#inicio",
+  "#consultorio",
+  "#historial",
+  "#contacto",
+] as const;
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const prefersReducedMotion = useReducedMotion();
   const links = navOrder
     .map((href) => siteConfig.navigation.find((item) => item.href === href))
@@ -21,9 +27,22 @@ export function Navbar() {
     );
 
   useEffect(() => {
+    let lastY = window.scrollY;
+
     const onScroll = () => {
-      setScrolled(window.scrollY > 8);
+      const y = window.scrollY;
+      setScrolled(y > 8);
+
+      // Ignoramos micro-movimientos y el rebote elástico de iOS.
+      const delta = y - lastY;
+      if (Math.abs(delta) < 6 || y < 0) {
+        return;
+      }
+      // Se oculta al bajar, pero solo una vez pasado el hero inicial.
+      setHidden(delta > 0 && y > 140);
+      lastY = y;
     };
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
@@ -66,104 +85,115 @@ export function Navbar() {
     };
   }, [open]);
 
-  const onNavigate = (href: string) => (event: MouseEvent<HTMLAnchorElement>) => {
-    const id = href.replace("#", "");
-    const target = document.getElementById(id);
-    if (!target) {
-      return;
-    }
-    event.preventDefault();
-    target.scrollIntoView({
-      behavior: prefersReducedMotion ? "auto" : "smooth",
-      block: "start",
-    });
-    setOpen(false);
-  };
+  const onNavigate =
+    (href: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+      const id = href.replace("#", "");
+      const target = document.getElementById(id);
+      if (!target) {
+        return;
+      }
+      event.preventDefault();
+      target.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+      setOpen(false);
+    };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60">
+    <header className="pointer-events-none sticky top-0 z-50">
+      {/* La barra se traslada sola: el overlay queda fuera de este contenedor
+          para que su posición fija siga tomando como referencia la ventana. */}
       <div
         className={cn(
-          "pointer-events-none absolute inset-0 bg-background/95 backdrop-blur-sm transition-opacity duration-200",
-          scrolled || open ? "opacity-100" : "opacity-92",
+          "border-border/60 pointer-events-auto relative border-b",
+          !prefersReducedMotion && "transition-transform duration-300 ease-out",
+          hidden && !open && !prefersReducedMotion && "-translate-y-full",
         )}
-        aria-hidden="true"
-      />
-      <div className="relative mx-auto flex max-w-content items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4 lg:px-10 xl:px-12">
-        <a
-          href="#inicio"
-          className="group inline-flex min-w-0 items-center gap-2 pr-2"
-        >
-          <Image
-            src="/images/logo-ig-mark-only-dark-v2.webp"
-            alt={siteConfig.doctor.title}
-            width={110}
-            height={110}
-            className="h-11 w-11 rounded-sm object-contain sm:h-12 sm:w-12"
-            sizes="48px"
-            priority
-          />
-          <span className="truncate font-display text-[0.98rem] tracking-tight text-foreground sm:text-[1.08rem]">
-            {siteConfig.doctor.title}
-          </span>
-        </a>
+      >
+        <div
+          className={cn(
+            "bg-background/95 pointer-events-none absolute inset-0 backdrop-blur-sm transition-opacity duration-200",
+            scrolled || open ? "opacity-100" : "opacity-92",
+          )}
+          aria-hidden="true"
+        />
+        <div className="max-w-content relative mx-auto flex items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4 lg:px-10 xl:px-12">
+          <a
+            href="#inicio"
+            className="group inline-flex min-w-0 items-center gap-2 pr-2"
+          >
+            <Image
+              src="/images/logo-ig-mark-only-dark-v2.webp"
+              alt={siteConfig.doctor.title}
+              width={110}
+              height={110}
+              className="h-11 w-11 rounded-sm object-contain sm:h-12 sm:w-12"
+              sizes="48px"
+              priority
+            />
+            <span className="font-display text-foreground truncate text-[0.98rem] tracking-tight sm:text-[1.08rem]">
+              {siteConfig.doctor.title}
+            </span>
+          </a>
 
-        <nav
-          aria-label="Principal"
-          className="hidden items-center gap-6 xl:gap-8 lg:flex"
-        >
-          {links.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={onNavigate(item.href)}
-              className="text-[0.84rem] tracking-[0.04em] text-muted-foreground transition-colors duration-200 hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+          <nav
+            aria-label="Principal"
+            className="hidden items-center gap-6 lg:flex xl:gap-8"
+          >
+            {links.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={onNavigate(item.href)}
+                className="text-muted-foreground hover:text-foreground focus-visible:outline-ring text-[0.84rem] tracking-[0.04em] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex shrink-0 items-center gap-2">
+            <Button
+              href="#contacto"
+              className="bg-accent hidden border border-transparent px-4 text-[0.7rem] tracking-[0.08em] uppercase sm:inline-flex sm:px-6 sm:text-[0.78rem]"
             >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex shrink-0 items-center gap-2">
-          <Button
-            href="#contacto"
-            className="hidden border border-transparent bg-accent px-4 text-[0.7rem] tracking-[0.08em] uppercase sm:inline-flex sm:px-6 sm:text-[0.78rem]"
-          >
-            {siteConfig.ui.reserveCta}
-          </Button>
-          <button
-            type="button"
-            className="inline-flex min-h-11 min-w-11 items-center justify-center border border-border/80 bg-background/80 text-foreground lg:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            onClick={() => {
-              setOpen((value) => !value);
-            }}
-          >
-            <span className="sr-only">
-              {open ? "Cerrar menú" : "Abrir menú"}
-            </span>
-            <span aria-hidden="true" className="relative h-4 w-5">
-              <span
-                className={cn(
-                  "absolute left-0 top-0 h-px w-5 bg-current transition-all duration-200",
-                  open && "top-[7px] rotate-45",
-                )}
-              />
-              <span
-                className={cn(
-                  "absolute left-0 top-[7px] h-px w-5 bg-current transition-opacity duration-200",
-                  open && "opacity-0",
-                )}
-              />
-              <span
-                className={cn(
-                  "absolute left-0 top-[14px] h-px w-5 bg-current transition-all duration-200",
-                  open && "top-[7px] -rotate-45",
-                )}
-              />
-            </span>
-          </button>
+              {siteConfig.ui.reserveCta}
+            </Button>
+            <button
+              type="button"
+              className="border-border/80 bg-background/80 text-foreground focus-visible:outline-ring inline-flex min-h-11 min-w-11 items-center justify-center border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 lg:hidden"
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              onClick={() => {
+                setOpen((value) => !value);
+              }}
+            >
+              <span className="sr-only">
+                {open ? "Cerrar menú" : "Abrir menú"}
+              </span>
+              <span aria-hidden="true" className="relative h-4 w-5">
+                <span
+                  className={cn(
+                    "absolute top-0 left-0 h-px w-5 bg-current transition-all duration-200",
+                    open && "top-[7px] rotate-45",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "absolute top-[7px] left-0 h-px w-5 bg-current transition-opacity duration-200",
+                    open && "opacity-0",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "absolute top-[14px] left-0 h-px w-5 bg-current transition-all duration-200",
+                    open && "top-[7px] -rotate-45",
+                  )}
+                />
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -171,7 +201,7 @@ export function Navbar() {
         {open ? (
           <motion.div
             id="mobile-nav"
-            className="fixed inset-0 z-[70] lg:hidden"
+            className="pointer-events-auto fixed inset-0 z-[70] lg:hidden"
             initial={prefersReducedMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={prefersReducedMotion ? undefined : { opacity: 0 }}
@@ -180,9 +210,9 @@ export function Navbar() {
               setOpen(false);
             }}
           >
-            <div className="absolute inset-0 bg-background/88 backdrop-blur-md" />
+            <div className="bg-background/88 absolute inset-0 backdrop-blur-md" />
             <motion.div
-              className="relative flex h-full flex-col justify-between px-5 pb-8 pt-28 sm:px-8"
+              className="relative flex h-full flex-col justify-between px-5 pt-28 pb-8 sm:px-8"
               initial={prefersReducedMotion ? false : { y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={prefersReducedMotion ? undefined : { y: 12, opacity: 0 }}
@@ -214,35 +244,43 @@ export function Navbar() {
                     className="h-10 w-10 rounded-sm object-contain"
                     sizes="40px"
                   />
-                  <span className="truncate font-display text-[0.95rem] tracking-tight text-foreground">
+                  <span className="font-display text-foreground truncate text-[0.95rem] tracking-tight">
                     {siteConfig.doctor.title}
                   </span>
                 </a>
                 <button
                   type="button"
-                  className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-border/80 bg-background/85 text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  className="border-border/80 bg-background/85 text-foreground focus-visible:outline-ring inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                   onClick={() => {
                     setOpen(false);
                   }}
                 >
                   <span className="sr-only">Cerrar menú</span>
                   <span aria-hidden="true" className="relative h-4 w-5">
-                    <span className="absolute left-0 top-[7px] h-px w-5 rotate-45 bg-current" />
-                    <span className="absolute left-0 top-[7px] h-px w-5 -rotate-45 bg-current" />
+                    <span className="absolute top-[7px] left-0 h-px w-5 rotate-45 bg-current" />
+                    <span className="absolute top-[7px] left-0 h-px w-5 -rotate-45 bg-current" />
                   </span>
                 </button>
               </div>
 
-              <nav aria-label="Móvil" className="flex flex-col gap-2">
+              <nav
+                aria-label="Móvil"
+                className="border-border/60 flex flex-col border-t"
+              >
                 {links.map((item, index) => (
                   <motion.a
                     key={item.href}
                     href={item.href}
                     onClick={onNavigate(item.href)}
-                    className="rounded-xl border border-border/60 bg-background/80 px-4 py-3 text-[1.05rem] tracking-[0.03em] text-foreground"
-                    initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+                    className="border-border/60 font-display text-foreground hover:text-accent border-b py-4 text-[1.5rem] tracking-[-0.01em] transition-colors duration-200"
+                    initial={
+                      prefersReducedMotion ? false : { opacity: 0, y: 10 }
+                    }
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: prefersReducedMotion ? 0 : 0.04 * index, duration: 0.18 }}
+                    transition={{
+                      delay: prefersReducedMotion ? 0 : 0.04 * index,
+                      duration: 0.18,
+                    }}
                   >
                     {item.label}
                   </motion.a>
@@ -252,11 +290,11 @@ export function Navbar() {
               <div className="space-y-4">
                 <Button
                   href="#contacto"
-                  className="w-full border border-transparent bg-accent text-[0.76rem] tracking-[0.08em] uppercase"
+                  className="bg-accent w-full border border-transparent text-[0.76rem] tracking-[0.08em] uppercase"
                 >
                   {siteConfig.ui.reserveCta}
                 </Button>
-                <p className="text-center text-[0.7rem] tracking-[0.12em] text-muted-foreground uppercase">
+                <p className="text-muted-foreground text-center text-[0.7rem] tracking-[0.12em] uppercase">
                   Ignacio Golian · Otorrinolaringólogo
                 </p>
               </div>

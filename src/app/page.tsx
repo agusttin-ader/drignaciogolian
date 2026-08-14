@@ -1,4 +1,5 @@
 import { AboutSection } from "@/components/sections/About";
+import { BeforeAfterGallerySection } from "@/components/sections/BeforeAfterGallery";
 import { ConversionBand } from "@/components/sections/ConversionBand";
 import { ConditionsSection } from "@/components/sections/Conditions";
 import { ContactSection } from "@/components/sections/Contact";
@@ -14,6 +15,7 @@ export default function Home() {
       <ConditionsSection />
       <ConversionBand />
       <AboutSection />
+      <BeforeAfterGallerySection />
       <FAQSection />
       <ContactSection />
     </main>

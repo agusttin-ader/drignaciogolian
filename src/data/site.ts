@@ -55,76 +55,94 @@ export const siteConfig = {
     portrait: "/images/or-portrait.webp",
     clinic: "/images/dr-golian-clinic.webp",
     clinicAlt: "Consultorio del Dr. Ignacio Golian",
+    beforeAfter: [
+      "/images/antesydespues/8acce278-9c9e-4dcd-a881-927c07c20552.webp",
+      "/images/antesydespues/62ef0c57-216c-46a1-b173-3b7b040ea4de.webp",
+      "/images/antesydespues/5ccd68c4-6664-484c-8693-91fda278d5c5.webp",
+      "/images/antesydespues/90601b19-fc7b-4894-a18d-190a13691eb6.webp",
+      "/images/antesydespues/9f3ab56c-623d-4ec8-ad1b-29c3de197dda.webp",
+      "/images/antesydespues/aeb418a4-b976-4407-b002-72cfb0d22266.webp",
+      "/images/antesydespues/73ecb96f-79ce-4994-81f7-43a777f6a5f2.webp",
+      "/images/antesydespues/489ffd59-c332-4307-a458-e101ba208443.webp",
+      "/images/antesydespues/a2177fb0-f4da-4424-8037-7e4c2201beed.webp",
+      "/images/antesydespues/ff9f02d2-580a-4bdf-ad4a-4219c43c7182.webp",
+      "/images/antesydespues/6097f254-acd6-4e3e-953e-0152ee9a89b2.webp",
+      "/images/antesydespues/a068b7b6-642c-4cea-904f-8d68239f8ac9.webp",
+      "/images/antesydespues/85c193f0-7d3d-49e2-a02c-03855e62acf4.webp",
+      "/images/antesydespues/350d7cf0-6c67-40ff-81e5-3980071ebd2b.webp",
+      "/images/antesydespues/af4eeb65-b423-4310-b2f7-954afc286d59.webp",
+      "/images/antesydespues/7adac1da-b98f-4475-b06a-84fe4d017f4c.webp",
+      "/images/antesydespues/f21cc9cd-cd2a-4bdc-abaa-5211ba06fb24.webp",
+      "/images/antesydespues/2e2599ac-7fbe-4287-9c3b-a33c257a7ab1.webp",
+      "/images/antesydespues/79a761c9-3a75-4ee7-b06b-0303cda7b749.webp",
+      "/images/antesydespues/22471bc8-e43a-48fa-a29e-b83a93617704.webp",
+      "/images/antesydespues/c25151dd-a901-4949-a37a-5ffb9e9f8539.webp",
+      "/images/antesydespues/f4f3469f-42eb-4bb4-923e-c659843d31be.webp",
+      "/images/antesydespues/8aa25f70-88a1-49da-b0a5-3367c182150e.webp",
+      "/images/antesydespues/98fb3fb9-5b5e-424f-a2d1-8dfe3138a09a.webp",
+      "/images/antesydespues/936f1beb-22d1-4ae3-b8fe-ea771275156b.webp",
+      "/images/antesydespues/508a86f9-f60c-4dee-ac72-aa469e8c4ad4.webp",
+      "/images/antesydespues/328ceb3c-196d-47e3-904f-b191c8586210.webp",
+      "/images/antesydespues/f1515704-3c5f-4a48-9762-c2dd1599d0c9.webp",
+      "/images/antesydespues/5f10c241-7b0c-4d41-82f0-9d8a58b1067a.webp",
+      "/images/antesydespues/ea9329e2-9b2c-48c2-9bfa-9e6bb0b7cf55.webp",
+      "/images/antesydespues/7b3ebb13-1d3b-420a-aece-292ee745c423.webp",
+      "/images/antesydespues/a5ea5d45-0e9a-4687-8d3b-70d3c0441c7b.webp",
+      "/images/antesydespues/1627fe0b-8701-4b0a-871d-67788ca0c4d8.webp",
+      "/images/antesydespues/89d2850a-0b37-4984-9735-d6a28896aeb6.webp",
+      "/images/antesydespues/ce36a472-5096-4938-89c8-3c5b91dc12b5.webp",
+      "/images/antesydespues/4663e7d4-23c8-4b8d-81c0-3f23297361d0.webp",
+      "/images/antesydespues/6bab882f-cee4-4391-af25-d9f171ca9827.webp",
+    ],
   },
   ui: {
     reserveCta: "Reservar consulta",
     whatsappCta: "Escribir por WhatsApp",
     aboutHeading: "Sobre el Dr. Golian",
-    pendingLabel: "Contenido pendiente",
+    whatsappPrompt: "¿Preferís escribir directamente?",
+    whatsappUnavailable: "Canal disponible próximamente",
     heroSupportingCopy:
-      "Evaluación clínica integral con enfoque funcional y estético, pensada para acompañar cada etapa del diagnóstico y del tratamiento.",
-    heroSupportingCopyExtended:
-      "Este bloque es un texto de referencia para balance visual y debe reemplazarse con la propuesta editorial definitiva del doctor.",
+      "Evaluación clínica integral con enfoque funcional y estético, en cada etapa del diagnóstico y del tratamiento.",
     trustIndicators: [
       "Atención personalizada",
       "Cirugía ORL",
       "Seguimiento evolutivo",
     ],
-    aboutPlaceholderQuote:
-      "El objetivo clínico es devolver función, confort respiratorio y seguridad al paciente con una indicación precisa en cada etapa.",
-    aboutPlaceholderBio: [
-      "Formación universitaria, actividad hospitalaria y práctica quirúrgica convergen en una mirada clínica orientada al diagnóstico detallado. Este párrafo es de carácter editorial y se utiliza únicamente como contenido de apoyo hasta recibir la versión final validada por el doctor.",
-      "La experiencia en patologías nasales funcionales y procesos inflamatorios crónicos requiere valoración individual, revisión de estudios y un plan terapéutico escalonado. El contenido actual funciona como texto de apoyo para mantener ritmo visual, densidad de lectura y claridad narrativa en la sección.",
-      "La propuesta de atención combina escucha activa, comunicación clara del tratamiento y seguimiento posterior. Este texto se publica como referencia de estructura y deberá ser sustituido por contenido médico definitivo antes de producción.",
+    aboutBio: [
+      "La práctica combina consultorio, actividad hospitalaria y cirugía, con foco en patología nasal funcional y procesos inflamatorios crónicos.",
+      "Cada consulta parte de una evaluación individual: antecedentes, examen clínico y estudios previos definen el plan de tratamiento y su seguimiento.",
     ],
     contactIntro:
-      "Completá el formulario para iniciar tu consulta. Este texto es de referencia para aportar contexto editorial hasta contar con la versión final de contenidos.",
+      "Contame tu motivo de consulta y coordinamos la primera evaluación por correo.",
     contactExpectations: [
       "Revisión de antecedentes y motivo principal de consulta.",
       "Evaluación clínica orientativa y definición de próximos pasos.",
       "Indicación de estudios complementarios cuando corresponda.",
     ],
+    beforeAfterHeading: "Resultados",
+    beforeAfterIntro:
+      "Registros de casos del consultorio, publicados con consentimiento de cada paciente.",
   },
-  faqPlaceholders: [
+  faqs: [
     {
-      question: "¿Cuánto dura la recuperación luego del procedimiento?",
+      question: "¿Qué llevo a la primera consulta?",
       answer:
-        "El tiempo de recuperación depende del diagnóstico, la técnica indicada y la evolución individual. Como referencia editorial, este texto de apoyo explica que los controles y el seguimiento son claves para ajustar indicaciones y validar la evolución clínica. Debe reemplazarse por información médica final validada por el profesional.",
-    },
-    {
-      question: "¿Qué estudios conviene llevar a la primera consulta?",
-      answer:
-        "Para mejorar la evaluación inicial suele ser útil asistir con estudios previos, antecedentes relevantes y tratamientos realizados. Este contenido funciona como texto de apoyo para sostener la estructura informativa del sitio y será sustituido por el protocolo real definido por el doctor.",
+        "Estudios previos, resúmenes de tratamientos ya realizados y la medicación actual, si los tenés. Ayudan a orientar la evaluación desde el primer encuentro.",
     },
     {
       question: "¿Cómo se define si el tratamiento es clínico o quirúrgico?",
       answer:
-        "La decisión terapéutica se apoya en síntomas, examen físico, historia clínica y resultados de estudios complementarios. Este párrafo es una versión de apoyo editorial para completar el bloque FAQ y no constituye una indicación médica definitiva hasta recibir contenido validado.",
+        "La indicación surge de los síntomas, el examen clínico y los estudios complementarios. Se define y se conversa durante la consulta, según cada caso.",
     },
     {
-      question: "¿Cuándo podrían verse resultados funcionales?",
+      question: "¿La consulta incluye seguimiento?",
       answer:
-        "La respuesta al tratamiento varía según el cuadro clínico y la adherencia a las indicaciones. Como texto provisional, este bloque se incorpora para mejorar densidad de contenido y lectura. La respuesta final deberá incluir tiempos estimados concretos aportados por el especialista.",
+        "Los controles posteriores permiten registrar la evolución y ajustar las indicaciones cuando es necesario.",
     },
     {
-      question: "¿La consulta incluye plan de seguimiento?",
+      question: "¿Cómo coordino un turno?",
       answer:
-        "El seguimiento permite registrar evolución, ajustar medicación y revisar objetivos terapéuticos. Esta respuesta de apoyo aporta contexto de experiencia de atención mientras se prepara la versión final. Es necesario reemplazarla por la política de seguimiento confirmada por el consultorio.",
-    },
-    {
-      question: "¿Se pueden resolver dudas por canales digitales?",
-      answer:
-        "Los canales de contacto se utilizan para orientación administrativa y continuidad de comunicación. Este texto es de carácter demostrativo para mantener consistencia visual y narrativa en la sección de preguntas frecuentes, pendiente de sustitución por contenido definitivo del equipo médico.",
-    },
-    {
-      question: "¿Qué pasa si ya tuve tratamientos previos?",
-      answer:
-        "La evaluación contempla intervenciones y tratamientos anteriores para definir una nueva estrategia clínica personalizada. Esta respuesta es un texto de apoyo redactado para equilibrar la sección y conservar claridad de lectura hasta incorporar la versión médica aprobada.",
-    },
-    {
-      question: "¿Cómo se organiza la agenda para una valoración inicial?",
-      answer:
-        "La coordinación de turnos y disponibilidad se confirma por los canales activos del consultorio. Este contenido se utiliza como texto temporal de apoyo para la interfaz y deberá actualizarse con indicaciones administrativas finales proporcionadas por el doctor.",
+        "Escribí por los canales de contacto. Más abajo están las sedes y los días de atención de cada una.",
     },
   ],
   seo: {

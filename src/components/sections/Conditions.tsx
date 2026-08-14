@@ -82,7 +82,7 @@ export function ConditionsSection() {
                   reverse && "lg:grid-cols-[4.5rem_minmax(16rem,24rem)_minmax(0,1fr)]",
                 )}
               >
-                <p className="font-display text-[2rem] leading-none text-foreground/20 sm:text-[2.3rem]">
+                <p className="font-display text-[2rem] leading-none text-accent/35 sm:text-[2.3rem]">
                   {number}
                 </p>
 
@@ -93,9 +93,6 @@ export function ConditionsSection() {
                   <p className="max-w-3xl text-[0.92rem] leading-relaxed text-muted-foreground sm:text-base">
                     {condition.description}
                   </p>
-                  <p className="max-w-3xl text-[0.9rem] leading-relaxed text-muted-foreground/90 sm:text-[0.98rem]">
-                    La evaluación de este cuadro incluye revisión clínica, correlación con estudios y planificación terapéutica personalizada. Este bloque se incorpora como contenido provisional para mejorar densidad informativa, ritmo de lectura y equilibrio visual de la sección hasta contar con versión final validada por el especialista.
-                  </p>
                 </div>
 
                 <EditorialImage
@@ -103,7 +100,7 @@ export function ConditionsSection() {
                   alt={photoAlts.or}
                   sizes="(max-width: 1023px) 100vw, 33vw"
                   className={cn(
-                    "aspect-[4/3] w-full overflow-hidden rounded-xl border border-border/60",
+                    "aspect-[4/3] w-full overflow-hidden rounded-lg border border-border/60",
                     reverse && "lg:order-2",
                   )}
                   imageClassName="object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"

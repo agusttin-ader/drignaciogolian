@@ -34,13 +34,22 @@ export function Accordion({ items, className }: AccordionProps) {
                 id={buttonId}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                className="flex min-h-12 w-full items-center justify-between gap-4 py-5 text-left font-display text-[1.1rem] font-medium leading-snug tracking-[-0.01em] transition-colors duration-200 hover:text-foreground/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:text-[1.25rem]"
+                className={cn(
+                  "flex min-h-12 w-full items-center justify-between gap-4 py-5 text-left font-display text-[1.1rem] font-medium leading-snug tracking-[-0.01em] transition-colors duration-200 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:text-[1.25rem]",
+                  isOpen && "text-accent",
+                )}
                 onClick={() => {
                   setOpenIndex(isOpen ? null : index);
                 }}
               >
                 {item.question}
-                <span aria-hidden="true" className="text-[1.4rem] text-muted-foreground transition-transform duration-200">
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "text-[1.4rem] transition-colors duration-200",
+                    isOpen ? "text-accent" : "text-muted-foreground",
+                  )}
+                >
                   {isOpen ? "–" : "+"}
                 </span>
               </button>

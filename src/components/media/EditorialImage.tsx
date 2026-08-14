@@ -8,7 +8,6 @@ type EditorialImageProps = {
   alt: string;
   sizes: string;
   preload?: boolean;
-  quality?: number;
   className?: string;
   imageClassName?: string;
   figureClassName?: string;
@@ -19,7 +18,6 @@ export function EditorialImage({
   alt,
   sizes,
   preload = false,
-  quality = 70,
   className,
   imageClassName,
   figureClassName,
@@ -31,7 +29,6 @@ export function EditorialImage({
         alt={alt}
         fill
         preload={preload}
-        quality={quality}
         placeholder="blur"
         sizes={sizes}
         className={cn("object-cover", imageClassName)}

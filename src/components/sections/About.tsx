@@ -16,7 +16,7 @@ const institutions = [
 
 export function AboutSection() {
   const { historial } = verbatim.pages;
-  const { aboutPlaceholderBio, aboutPlaceholderQuote } = siteConfig.ui;
+  const { aboutBio } = siteConfig.ui;
 
   return (
     <section
@@ -42,20 +42,11 @@ export function AboutSection() {
                 {historial.intro}
               </p>
             </Reveal>
-            {aboutPlaceholderBio.map((paragraph) => (
+            {aboutBio.map((paragraph) => (
               <p key={paragraph} className="max-w-3xl text-[0.92rem] leading-relaxed text-muted-foreground/95 sm:text-base">
                 {paragraph}
               </p>
             ))}
-
-            <blockquote className="border-l-2 border-accent/40 bg-sand/45 px-4 py-4 sm:px-6 sm:py-6">
-              <p className="font-display text-[1.05rem] italic leading-snug text-foreground/80 sm:text-2xl">
-                “{aboutPlaceholderQuote}”
-              </p>
-              <footer className="mt-4 text-[0.68rem] tracking-[0.18em] text-muted-foreground/85 uppercase">
-                {siteConfig.doctor.title}
-              </footer>
-            </blockquote>
 
             <Reveal delay={0.08}>
               <h3 className="font-display text-[1.35rem] italic tracking-[-0.01em] sm:text-3xl">{historial.heading}</h3>
@@ -77,7 +68,7 @@ export function AboutSection() {
               src={photos.named}
               alt={siteConfig.images.alt}
               sizes="(max-width: 1023px) 100vw, 480px"
-              className="aspect-[3/4] w-full rounded-2xl shadow-warm"
+              className="aspect-[3/4] w-full rounded-lg shadow-warm"
               imageClassName="object-[center_28%]"
             />
             <div className="mt-4 grid grid-cols-2 gap-3 sm:mt-5 sm:gap-4">
@@ -85,14 +76,14 @@ export function AboutSection() {
                 src={photos.portrait}
                 alt={siteConfig.images.alt}
                 sizes="(max-width: 1023px) 50vw, 230px"
-                className="aspect-[3/4] rounded-2xl shadow-warm-sm"
+                className="aspect-[3/4] rounded-lg shadow-warm-sm"
                 imageClassName="object-[center_22%]"
               />
               <EditorialImage
                 src={photos.close}
                 alt={photoAlts.or}
                 sizes="(max-width: 1023px) 50vw, 230px"
-                className="aspect-[3/4] rounded-2xl shadow-warm-sm"
+                className="aspect-[3/4] rounded-lg shadow-warm-sm"
                 imageClassName="object-[center_30%]"
               />
             </div>

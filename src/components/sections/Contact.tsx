@@ -16,7 +16,7 @@ type FieldErrors = {
 };
 
 const fieldClass =
-  "mt-2 w-full border bg-background px-4 text-[0.95rem] transition-colors duration-200 focus-visible:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
+  "mt-2 w-full rounded-lg border bg-background px-4 text-[0.95rem] transition-colors duration-200 focus-visible:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
 export function ContactSection() {
   const [name, setName] = useState("");
@@ -113,7 +113,7 @@ export function ContactSection() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="bg-background p-5 text-foreground shadow-warm-lg sm:p-8 lg:p-10">
+          <div className="rounded-lg bg-background p-5 text-foreground shadow-warm-lg sm:p-8 lg:p-10">
             <form className="space-y-5" onSubmit={onSubmit} noValidate>
               <div>
                 <label htmlFor="contact-name" className="text-[0.88rem] font-medium">
@@ -234,7 +234,7 @@ export function ContactSection() {
                 type="submit"
                 disabled={isSubmitting}
                 aria-busy={isSubmitting}
-                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-accent px-8 py-3.5 text-[0.9rem] font-medium tracking-[0.03em] text-accent-foreground shadow-warm-sm transition-all duration-200 hover:bg-foreground/95 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:w-auto"
+                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-accent px-8 py-3.5 text-[0.9rem] font-medium tracking-[0.03em] text-accent-foreground shadow-warm-sm transition-all duration-200 hover:bg-foreground/95 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:w-auto"
               >
                 {isSubmitting ? (
                   <>
@@ -257,18 +257,23 @@ export function ContactSection() {
 
             <div className="mt-8 border-t border-border pt-6">
               <p className="mb-4 text-[0.88rem] text-muted-foreground">
-                {siteConfig.ui.pendingLabel}
+                {siteConfig.ui.whatsappPrompt}
               </p>
               <WhatsAppCta variant="primary" className="w-full sm:w-auto" />
             </div>
 
-            <aside className="mt-8 rounded-2xl border border-border bg-sand/45 p-4 sm:p-6">
-              <h3 className="text-sm font-medium tracking-[0.08em] uppercase">
+            <aside className="mt-8 border-t border-border pt-6">
+              <h3 className="text-[0.7rem] font-medium tracking-[0.2em] text-muted-foreground/90 uppercase">
                 Qué esperar en la consulta
               </h3>
-              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
+              <ul className="mt-4">
                 {siteConfig.ui.contactExpectations.map((item) => (
-                  <li key={item}>• {item}</li>
+                  <li
+                    key={item}
+                    className="border-b border-border/60 py-3 text-[0.9rem] leading-relaxed text-muted-foreground last:border-0 last:pb-0"
+                  >
+                    {item}
+                  </li>
                 ))}
               </ul>
             </aside>

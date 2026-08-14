@@ -43,7 +43,7 @@ export function Footer() {
           {siteConfig.contact.email ? (
             <a
               href={`mailto:${siteConfig.contact.email}`}
-              className="mt-3.5 block text-[0.88rem] text-muted-foreground underline-offset-4 transition-all duration-200 hover:text-foreground hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+              className="mt-3.5 block text-[0.88rem] text-muted-foreground decoration-accent/50 underline-offset-4 transition-all duration-200 hover:text-accent hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
             >
               {siteConfig.contact.email}
             </a>

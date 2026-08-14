@@ -14,7 +14,7 @@ const styles = {
 } as const;
 
 const base =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-[0.88rem] font-medium tracking-[0.03em] touch-manipulation focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-55 sm:px-8 sm:text-[0.9rem]";
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-[0.88rem] font-medium tracking-[0.03em] touch-manipulation focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-55 sm:px-8 sm:text-[0.9rem]";
 
 type Variant = keyof typeof styles;
 

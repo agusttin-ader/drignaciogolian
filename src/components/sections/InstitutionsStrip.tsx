@@ -18,13 +18,13 @@ export function InstitutionsStrip() {
           {institutions.map((name, index) => (
             <motion.li
               key={name}
-              className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition-colors duration-200 hover:bg-sand/60"
+              className="inline-flex items-center gap-2 transition-colors duration-200 hover:text-foreground"
               initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
               whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.45 }}
               transition={{ duration: 0.24, delay: prefersReducedMotion ? 0 : index * 0.04 }}
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-border" aria-hidden="true" />
+              <span className="h-1.5 w-1.5 rounded-full bg-accent/45" aria-hidden="true" />
               {name}
             </motion.li>
           ))}
